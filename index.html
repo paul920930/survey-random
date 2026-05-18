@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>外送平台訂閱方案問卷</title>
+  <style>
+    body {
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      color: #222;
+    }
+    .container {
+      max-width: 640px;
+      margin: 80px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 36px 28px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+    p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+    button {
+      margin-top: 24px;
+      font-size: 18px;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 10px;
+      background: #222;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.85;
+    }
+    .note {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>外送平台訂閱方案問卷</h1>
+    <p>感謝您參與本研究。</p>
+    <p>系統將隨機分配一份問卷版本給您填答。</p>
+    <p>請點選下方按鈕開始問卷。</p>
+
+    <button onclick="goSurvey()">開始填答</button>
+
+    <p class="note">請依照頁面指示完成填答，問卷沒有標準答案。</p>
+  </div>
+
+  <script>
+    const surveys = [
+      { version: "A版", url: "https://forms.gle/4yhCLM1RoHi1oqx79" },
+      { version: "B版", url: "https://forms.gle/E43sE4YwDh7VRAJY7" },
+      { version: "C版", url: "https://forms.gle/LtUocSSXSmwq8gFd8" },
+      { version: "D版", url: "https://forms.gle/LXYJQHBvGCUc9E1HA" },
+      { version: "E版", url: "https://forms.gle/bivKFeU6EhFmoHoG7" }
+    ];
+
+    function goSurvey() {
+      /*
+        使用 localStorage：
+        同一位受訪者如果重新整理或再次點開此頁，
+        會維持同一個問卷版本，避免一直重新隨機抽換。
+      */
+      let assignedSurvey = localStorage.getItem("assignedSurveyUrl");
+      let assignedVersion = localStorage.getItem("assignedSurveyVersion");
+
+      if (!assignedSurvey) {
+        const randomIndex = Math.floor(Math.random() * surveys.length);
+        assignedSurvey = surveys[randomIndex].url;
+        assignedVersion = surveys[randomIndex].version;
+
+        localStorage.setItem("assignedSurveyUrl", assignedSurvey);
+        localStorage.setItem("assignedSurveyVersion", assignedVersion);
+      }
+
+      window.location.href = assignedSurvey;
+    }
+  </script>
+</body>
+</html>
