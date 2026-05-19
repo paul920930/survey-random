@@ -65,7 +65,7 @@
 
   <script>
     const surveys = [
-      { version: "A版", url: "https://forms.gle/4yhCLM1RoHi1oqx79" },
+      { version: "A版", url: "https://forms.gle/7TnrCzhgkNKdGyyU7" },
       { version: "B版", url: "https://forms.gle/E43sE4YwDh7VRAJY7" },
       { version: "C版", url: "https://forms.gle/LtUocSSXSmwq8gFd8" },
       { version: "D版", url: "https://forms.gle/LXYJQHBvGCUc9E1HA" },
@@ -73,21 +73,21 @@
     ];
 
     function goSurvey() {
-      /*
-        使用 localStorage：
-        同一位受訪者如果重新整理或再次點開此頁，
-        會維持同一個問卷版本，避免一直重新隨機抽換。
-      */
-      let assignedSurvey = localStorage.getItem("assignedSurveyUrl");
-      let assignedVersion = localStorage.getItem("assignedSurveyVersion");
+      const storageUrlKey = "assignedSurveyUrl_v2";
+      const storageVersionKey = "assignedSurveyVersion_v2";
 
-      if (!assignedSurvey) {
+      let assignedSurvey = localStorage.getItem(storageUrlKey);
+      let assignedVersion = localStorage.getItem(storageVersionKey);
+
+      const currentUrls = surveys.map(survey => survey.url);
+
+      if (!assignedSurvey || !currentUrls.includes(assignedSurvey)) {
         const randomIndex = Math.floor(Math.random() * surveys.length);
         assignedSurvey = surveys[randomIndex].url;
         assignedVersion = surveys[randomIndex].version;
 
-        localStorage.setItem("assignedSurveyUrl", assignedSurvey);
-        localStorage.setItem("assignedSurveyVersion", assignedVersion);
+        localStorage.setItem(storageUrlKey, assignedSurvey);
+        localStorage.setItem(storageVersionKey, assignedVersion);
       }
 
       window.location.href = assignedSurvey;
