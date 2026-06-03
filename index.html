@@ -65,16 +65,16 @@
 
   <script>
     const surveys = [
-      { version: "A版", url: "https://forms.gle/7TnrCzhgkNKdGyyU7" },
-      { version: "B版", url: "https://forms.gle/E43sE4YwDh7VRAJY7" },
-      { version: "C版", url: "https://forms.gle/LtUocSSXSmwq8gFd8" },
-      { version: "D版", url: "https://forms.gle/LXYJQHBvGCUc9E1HA" },
-      { version: "E版", url: "https://forms.gle/bivKFeU6EhFmoHoG7" }
+      { version: "A版", url: "https://www.surveycake.com/s/QyO6y" },
+      { version: "B版", url: "https://www.surveycake.com/s/MbbKB" },
+      { version: "C版", url: "https://www.surveycake.com/s/pbby6" },
+      { version: "D版", url: "https://www.surveycake.com/s/grr82" },
+      { version: "E版", url: "https://www.surveycake.com/s/oOO3Z" }
     ];
 
     function goSurvey() {
-      const storageUrlKey = "assignedSurveyUrl_v2";
-      const storageVersionKey = "assignedSurveyVersion_v2";
+      const storageUrlKey = "assignedSurveyUrl_surveycake_v1";
+      const storageVersionKey = "assignedSurveyVersion_surveycake_v1";
 
       let assignedSurvey = localStorage.getItem(storageUrlKey);
       let assignedVersion = localStorage.getItem(storageVersionKey);
